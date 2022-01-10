@@ -1,4 +1,4 @@
-module github.com/OctopusLian/chat
+module chat
 
 go 1.17
 
@@ -11,7 +11,9 @@ require (
 )
 
 require (
+	github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible // indirect
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
+	github.com/casbin/casbin v1.9.1 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
 	golang.org/x/time v0.0.0-20181108054448-85acf8d2951c // indirect
