@@ -3,7 +3,7 @@
  * @Author: neozhang
  * @Date: 2022-01-10 22:21:55
  * @LastEditors: neozhang
- * @LastEditTime: 2022-01-28 20:21:28
+ * @LastEditTime: 2022-01-28 20:40:02
  */
 package main
 
@@ -68,6 +68,10 @@ func Resp(w http.ResponseWriter, code int, date interface{}, msg string) {
 func main() {
 	//绑定请求和处理函数
 	http.HandleFunc("/user/login", userLogin)
+	//提供静态资源支持
+	//http.Handle("/", http.FileServer(http.Dir(".")))
+	//提供指定目录的静态文件支持
+	http.Handle("/asset", http.FileServer(http.Dir(".")))
 	//启动web服务器
 	http.ListenAndServe(":8080", nil)
 }
