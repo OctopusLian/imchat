@@ -10,6 +10,7 @@ package ctrl
 import (
 	"fmt"
 	"imchat/model"
+	"imchat/service"
 	"imchat/util"
 	"math/rand"
 	"net/http"

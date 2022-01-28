@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.0+incompatible
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gorilla/websocket v1.4.2
 	gopkg.in/fatih/set.v0 v0.2.1
 	xorm.io/xorm v1.2.5

@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"imchat/ctrl"
 	"log"
 	"net/http"
 )
@@ -115,21 +116,22 @@ func RegisterView() {
 
 func main() {
 	//绑定请求和处理函数
-	http.HandleFunc("/user/login", userLogin)
-	//提供静态资源支持
+	http.HandleFunc("/user/login", ctrl.UserLogin)
+	http.HandleFunc("/user/register", ctrl.UserRegister)
+	http.HandleFunc("/contact/loadcommunity", ctrl.LoadCommunity)
+	http.HandleFunc("/contact/loadfriend", ctrl.LoadFriend)
+	http.HandleFunc("/contact/joincommunity", ctrl.JoinCommunity)
+	http.HandleFunc("/contact/createcommunity", ctrl.CreateCommunity)
+	//http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
+	http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
+	http.HandleFunc("/chat", ctrl.Chat)
+	http.HandleFunc("/attach/upload", ctrl.Upload)
+	//1 提供静态资源目录支持
 	//http.Handle("/", http.FileServer(http.Dir(".")))
-	//提供指定目录的静态文件支持
-	http.Handle("/asset", http.FileServer(http.Dir(".")))
-	//user/login.html
-	http.HandleFunc("/user/login.shtml", func(rw http.ResponseWriter, r *http.Request) {
-		//解析
-		tpl, err := template.ParseFiles("view/user/login.html")
-		if err != nil {
-			//打印并直接突出
-			log.Fatal(err.Error())
-		}
-		tpl.ExecuteTemplate(rw, "/user/login.shtml", nil)
-	})
+
+	//2 指定目录的静态文件
+	http.Handle("/asset/", http.FileServer(http.Dir(".")))
+	http.Handle("/mnt/", http.FileServer(http.Dir(".")))
 
 	RegisterView()
 	//启动web服务器

@@ -6,6 +6,8 @@ import (
 	"imchat/model"
 	"log"
 
+	_ "github.com/go-sql-driver/mysql"
+
 	"xorm.io/xorm"
 )
 
@@ -13,7 +15,7 @@ var DbEngin *xorm.Engine
 
 func init() {
 	drivename := "mysql"
-	DsName := "root:mysql123@(127.0.0.1:3306)/chat?charset=utf8mb4"
+	DsName := "root:mysql123@(127.0.0.1:3306)/imchat?charset=utf8mb4"
 	err := errors.New("")
 	DbEngin, err = xorm.NewEngine(drivename, DsName)
 	if nil != err && "" != err.Error() {
