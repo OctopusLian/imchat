@@ -9,6 +9,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 )
@@ -65,6 +67,52 @@ func Resp(w http.ResponseWriter, code int, date interface{}, msg string) {
 	w.Write(ret)
 }
 
+func RegisterTemplate() {
+	//全局扫描模板
+	GlobTemplete := template.New("root")
+	GlobTemplete, err := GlobTemplete.ParseGlob("view/**/*")
+	if err != nil {
+		//打印错误信息
+		//退出系统
+		log.Fatal(err)
+	}
+	//分别对每一个模板进行注册
+
+	for _, tpl := range GlobTemplete.Templates() {
+		patern := tpl.Name()
+		http.HandleFunc(patern,
+			func(w http.ResponseWriter,
+				r *http.Request) {
+				GlobTemplete.ExecuteTemplate(w, patern, nil)
+			})
+		fmt.Println("register=>" + patern)
+	}
+}
+
+func RegisterView() {
+	//一次解析出全部模板
+	tpl, err := template.ParseGlob("view/**/*")
+	if nil != err {
+		log.Fatal(err)
+	}
+	//通过for循环做好映射
+	for _, v := range tpl.Templates() {
+		//
+		tplname := v.Name()
+		fmt.Println("HandleFunc     " + v.Name())
+		http.HandleFunc(tplname, func(w http.ResponseWriter,
+			request *http.Request) {
+			//
+			fmt.Println("parse     " + v.Name() + "==" + tplname)
+			err := tpl.ExecuteTemplate(w, tplname, nil)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+		})
+	}
+
+}
+
 func main() {
 	//绑定请求和处理函数
 	http.HandleFunc("/user/login", userLogin)
@@ -72,6 +120,18 @@ func main() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
 	//提供指定目录的静态文件支持
 	http.Handle("/asset", http.FileServer(http.Dir(".")))
+	//user/login.html
+	http.HandleFunc("/user/login.shtml", func(rw http.ResponseWriter, r *http.Request) {
+		//解析
+		tpl, err := template.ParseFiles("view/user/login.html")
+		if err != nil {
+			//打印并直接突出
+			log.Fatal(err.Error())
+		}
+		tpl.ExecuteTemplate(rw, "/user/login.shtml", nil)
+	})
+
+	RegisterView()
 	//启动web服务器
 	http.ListenAndServe(":8080", nil)
 }
