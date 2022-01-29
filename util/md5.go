@@ -3,7 +3,7 @@
  * @Author: neozhang
  * @Date: 2022-01-10 22:48:29
  * @LastEditors: neozhang
- * @LastEditTime: 2022-01-10 22:48:36
+ * @LastEditTime: 2022-01-30 01:03:33
  */
 package util
 
@@ -27,7 +27,8 @@ func MD5Encode(data string) string {
 }
 
 func ValidatePasswd(plainpwd, salt, passwd string) bool {
-	return Md5Encode(plainpwd+salt) == passwd
+	Md5Code := Md5Encode(plainpwd + salt)
+	return Md5Code == passwd
 }
 func MakePasswd(plainpwd, salt string) string {
 	return Md5Encode(plainpwd + salt)

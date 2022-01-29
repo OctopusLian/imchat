@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: neozhang
+ * @Date: 2022-01-28 23:48:54
+ * @LastEditors: neozhang
+ * @LastEditTime: 2022-01-29 22:15:44
+ */
 package service
 
 import (
@@ -26,7 +33,7 @@ func init() {
 	//数据库最大打开的连接数
 	DbEngin.SetMaxOpenConns(2)
 
-	//自动User
+	//自动同步表
 	DbEngin.Sync2(new(model.User),
 		new(model.Contact),
 		new(model.Community))

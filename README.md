@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: neozhang
+ * @Date: 2021-11-05 13:28:23
+ * @LastEditors: neozhang
+ * @LastEditTime: 2022-01-29 22:29:50
+-->
 # 支持10万人同时在线Go语言打造高并发web即时聊天(IM)应用  
 
 ## 需求分析及拆分  
@@ -21,3 +28,10 @@
 
 ![](./res/IM系统一般架构.png)  
 
+## 如何运行  
+
+```
+$ go run main.go
+```
+
+浏览器访问`http://localhost:8080/user/login.shtml`  

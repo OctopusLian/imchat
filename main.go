@@ -3,7 +3,7 @@
  * @Author: neozhang
  * @Date: 2022-01-10 22:21:55
  * @LastEditors: neozhang
- * @LastEditTime: 2022-01-28 20:40:02
+ * @LastEditTime: 2022-01-29 22:28:42
  */
 package main
 
@@ -123,7 +123,7 @@ func main() {
 	http.HandleFunc("/contact/joincommunity", ctrl.JoinCommunity)
 	http.HandleFunc("/contact/createcommunity", ctrl.CreateCommunity)
 	//http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
-	http.HandleFunc("/contact/addfriend", ctrl.Addfriend)
+	http.HandleFunc("/contact/addfriend", ctrl.Addfriend) //添加好友
 	http.HandleFunc("/chat", ctrl.Chat)
 	http.HandleFunc("/attach/upload", ctrl.Upload)
 	//1 提供静态资源目录支持

@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: neozhang
+ * @Date: 2022-01-28 23:44:45
+ * @LastEditors: neozhang
+ * @LastEditTime: 2022-01-29 22:14:10
+ */
 package model
 
 import "time"
@@ -9,11 +16,9 @@ type Contact struct {
 	//谁的10000
 	Ownerid int64 `xorm:"bigint(20)" form:"ownerid" json:"ownerid"` // 记录是谁的
 	//对端,10001
-	Dstobj int64 `xorm:"bigint(20)" form:"dstobj" json:"dstobj"` // 对端信息
-	//
-	Cate int    `xorm:"int(11)" form:"cate" json:"cate"`      // 什么类型
-	Memo string `xorm:"varchar(120)" form:"memo" json:"memo"` // 备注
-	//
+	Dstobj   int64     `xorm:"bigint(20)" form:"dstobj" json:"dstobj"`   // 对端信息
+	Cate     int       `xorm:"int(11)" form:"cate" json:"cate"`          // 什么类型
+	Memo     string    `xorm:"varchar(120)" form:"memo" json:"memo"`     // 备注
 	Createat time.Time `xorm:"datetime" form:"createat" json:"createat"` // 创建时间
 }
 

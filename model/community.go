@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: neozhang
+ * @Date: 2022-01-28 23:45:27
+ * @LastEditors: neozhang
+ * @LastEditTime: 2022-01-29 22:14:40
+ */
 package model
 
 import "time"
@@ -13,8 +20,7 @@ type Community struct {
 	//como
 	Cate int `xorm:"int(11)" form:"cate" json:"cate"` // 什么角色
 	//描述
-	Memo string `xorm:"varchar(120)" form:"memo" json:"memo"` // 什么角色
-	//
+	Memo     string    `xorm:"varchar(120)" form:"memo" json:"memo"`     // 什么角色
 	Createat time.Time `xorm:"datetime" form:"createat" json:"createat"` // 什么角色
 }
 
